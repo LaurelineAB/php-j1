@@ -1,0 +1,94 @@
+<?php
+    $nb = rand(1000,9999);
+    $alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    $let1 = rand(0,25);
+    $let2 = rand(0,25);
+    $letters = "$alphabet[$let1]$alphabet[$let2]";
+    //$letter = chr(rand(65,90)) renvoie une lettre majuscule
+    $name = "$letters-$nb";
+    
+    date_default_timezone_set('Europe/Paris');
+    $today = date("d m Y");
+    $time = date("G:i:s");
+    
+    $choice = rand(1,10);
+    
+    $chance = rand(1,3);
+    
+    $random = rand(1,1000);
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Robot Factory</title>
+</head>
+<body>
+    <h2>Salut humain. Je suis <?= $name ?>.</h2>
+    <p>Nous sommes le <?= $today ?> et il est <?= $time ?></p>
+    <p>J'ai choisi le nombre <?= $choice ?>, c'est un nombre 
+    <?php 
+        if ($choice %2 === 0)
+        {
+            echo "pair.";
+        }
+        else
+        {
+            echo "impair.";
+        }
+    ?>
+    </p>
+    <p>Mon nom à l'envers s'écrit <?= strrev($name) ?>. Ah. Ah. Ah.</p>
+    <p>
+    <?php
+        if ($chance === 1)
+        {
+            echo "Extermination ! Extermination !";
+        }
+        else
+        {
+            echo "Vous voulez un café ?";
+        }
+    ?>
+    </p>
+    <p>Le nombre de mon subconscient est
+    <?php
+        $i=0;
+        while($i !== $random)
+        {
+            $i++;
+        }
+        if ($i === $random)
+        {
+            echo $i;
+        }
+    ?>
+     !</p>
+    <p>Recherche dichotomique :
+    <?php
+        function search(float $start, float $end, float $nb) : float
+        {
+            $guess = round(($end+$start)/2);
+            // var_dump($guess);
+            // echo "<br>";
+            // var_dump($nb);
+            // echo "<br><br>";
+            if ($guess === $nb)
+            {
+                return $guess;
+            }
+            else if ($guess < $nb)
+            {
+                return search($guess, $end, $nb);
+            }
+            else
+            {
+                return search($start, $guess, $nb);
+            }
+        }
+        echo search(1,1000,$random);
+    ?>
+    </p>
+</body>
+</html>
