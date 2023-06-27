@@ -1,5 +1,7 @@
 <?php
 
+//Exercices variables et types
+
     //Exercice 1
     $nb = 42;
     echo $nb;
@@ -30,5 +32,47 @@
     $str = (string) $float;
     echo $data;
     echo $float;
-    echo $str;
+    echo "$str<br>";
+    
+//Exercices boucles
+    
+    //Exercice 5
+    $animals = ["Chat", "Chien", "Lapin", "Souris"];
+    foreach($animals as $animal)
+    {
+        echo "$animal<br>";
+    }
+    
+    //Exercice 6
+    $numbers = [28, 32, 44, -67, 18, 24, -98];
+    foreach($numbers as $number)
+    {
+        if ($number < 0)
+        {
+            echo "$number<br>";
+        }
+    }
+    
+    //Exercice 7
+    $user = [
+        "firstName" => "Barack",
+        "lastName" => "Obama"
+    ];
+    echo "Je suis $user[firstName] $user[lastName], le 44ème président des USA.<br>";
+    
+    //Exercice 8
+    $users = [
+        [
+            "firstName" => "Mari",
+            "lastName" => "Doucet"
+        ],
+        [
+            "firstName" => "Hugues",
+            "lastName" => "Froger"
+        ]
+    ];
+    foreach($users as $user)
+    {
+        echo "$user[firstName] $user[lastName]<br>";
+    }
 ?>
