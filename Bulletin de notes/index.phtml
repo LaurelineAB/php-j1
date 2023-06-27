@@ -1,0 +1,98 @@
+<?php
+    $students = [
+        [
+            "firstName" => "James",
+            "lastName" => "Fields",
+            "grades" => [12, 11, 15],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Richard",
+            "lastName" => "Stein",
+            "grades" => [18, 12, 13],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Mark",
+            "lastName" => "Hartoff",
+            "grades" => [9, 11, 10],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Thomas",
+            "lastName" => "Nestle",
+            "grades" => [9, 8, 5],
+            "average" => -1
+        ],
+        [
+            "firstName" => "Jeremy",
+            "lastName" => "Brent",
+            "grades" => [18, 15, 16],
+            "average" => -1
+        ]
+    ];
+    
+    function average(float $grade1, float $grade2, float $grade3) : float
+    {
+        $sum = $grade1 + $grade2 + $grade3;
+        $average = $sum / 3;
+        return $average;
+    }
+    
+?>
+
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini-projet : Bulletin de notes</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+    <?php
+        foreach ($students as $student)
+        {
+            $student['average'] = average($student['grades'][0], $student['grades'][1], $student['grades'][2]);
+    ?>
+    <article
+    <?php 
+        if ($student['average'] < 10)
+        { ?>
+        class="red"
+        <?php } 
+        else if ($student['average'] >=10 && $student['average'] <=13)
+        { ?>
+        class="orange"
+        <?php }
+        else
+        { ?>
+        class="green"
+        <?php } ?>
+        >
+        <header>
+            <h1><?= "$student[firstName] $student[lastName]";?></h1>
+        </header>
+        <section>
+            <h2>Notes : </h2>
+            <ul>
+            <?php
+                    // Les quotes du nom de l'array sont absolument nécessaires, mais pas de quotes pour le echo
+                    foreach($student['grades'] as $grade)
+                    {
+                ?>
+                        <li><?= $grade;?></li>
+                <?php 
+                    }
+                ?>
+                
+            </ul>
+        </section>
+        <footer>
+            <h3><?= $student['average']; ?></h3>
+        </footer>
+    </article>
+    <?php
+        }
+    ?>
+</body>
+</html>
